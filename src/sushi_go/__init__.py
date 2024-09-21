@@ -1,23 +1,24 @@
 import random
 from typing import List
 
-from . import cards
-from .cards import Card
+import sushi_go.cards
+from sushi_go.cards import Card
+from sushi_go.scoring import score_drafted
 
 
 _NEW_DECK_COUNTS = [
-    (cards.Tempura, 14),
-    (cards.Sashimi, 14),
-    (cards.Dumpling, 14),
-    (cards.Maki1, 6),
-    (cards.Maki2, 12),
-    (cards.Maki3, 8),
-    (cards.SalmonNigiri, 10),
-    (cards.SquidNigiri, 5),
-    (cards.EggNigiri, 5),
-    (cards.Pudding, 10),
-    (cards.Wasabi, 6),
-    (cards.Chopsticks, 4),
+    (sushi_go.cards.Tempura, 14),
+    (sushi_go.cards.Sashimi, 14),
+    (sushi_go.cards.Dumpling, 14),
+    (sushi_go.cards.Maki1, 6),
+    (sushi_go.cards.Maki2, 12),
+    (sushi_go.cards.Maki3, 8),
+    (sushi_go.cards.SalmonNigiri, 10),
+    (sushi_go.cards.SquidNigiri, 5),
+    (sushi_go.cards.EggNigiri, 5),
+    (sushi_go.cards.Pudding, 10),
+    (sushi_go.cards.Wasabi, 6),
+    (sushi_go.cards.Chopsticks, 4),
 ]
 
 
@@ -38,7 +39,3 @@ def deal_hands(num_players: int, deck: List[Card], seed=0) -> List[List[Card]]:
         [deck.pop() for _ in range(cards_per_player)]
         for _ in range(num_players)
     ]
-
-
-def score_drafted(cards: List[Card]) -> int:
-    pass

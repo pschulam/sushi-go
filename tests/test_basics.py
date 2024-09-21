@@ -42,3 +42,43 @@ def test_deal_hands_counts():
         assert len(hands) == game_type['num_players']
         assert all(len(hand) == game_type['cards_per_player'] for hand in hands)
         assert len(deck) == game_type['cards_left']
+
+
+def test_score_drafted_tempura():
+    examples = [
+        ([sushi_go.cards.Tempura() for _ in range(1)], 0),
+        ([sushi_go.cards.Tempura() for _ in range(2)], 5),
+        ([sushi_go.cards.Tempura() for _ in range(3)], 5),
+        ([sushi_go.cards.Tempura() for _ in range(4)], 10),
+        ([sushi_go.cards.SalmonNigiri()], 0),
+    ]
+    for cards, points in examples:
+        assert sushi_go.score_drafted(cards) == points
+
+
+def test_score_drafted_sashimi():
+    examples = [
+        ([sushi_go.cards.Sashimi() for _ in range(1)], 0),
+        ([sushi_go.cards.Sashimi() for _ in range(2)], 0),
+        ([sushi_go.cards.Sashimi() for _ in range(3)], 10),
+        ([sushi_go.cards.Sashimi() for _ in range(4)], 10),
+        ([sushi_go.cards.Sashimi() for _ in range(5)], 10),
+        ([sushi_go.cards.Sashimi() for _ in range(6)], 20),
+        ([sushi_go.cards.SalmonNigiri()], 0),
+    ]
+    for cards, points in examples:
+        assert sushi_go.score_drafted(cards) == points
+
+
+def test_score_drafted_dumplings():
+    examples = [
+        ([sushi_go.cards.Dumpling() for _ in range(1)], 1),
+        ([sushi_go.cards.Dumpling() for _ in range(2)], 3),
+        ([sushi_go.cards.Dumpling() for _ in range(3)], 6),
+        ([sushi_go.cards.Dumpling() for _ in range(4)], 10),
+        ([sushi_go.cards.Dumpling() for _ in range(5)], 15),
+        ([sushi_go.cards.Dumpling() for _ in range(6)], 15),
+        ([sushi_go.cards.SalmonNigiri()], 0),
+    ]
+    for cards, points in examples:
+        assert sushi_go.score_drafted(cards) == points
